@@ -39,6 +39,41 @@ class CardController extends Controller
         }
     }
 
+    public function post(Request $request){
+        $data = Request::all();
+        $rules = ['name' => 'required|unique:admin|max:255', 'password' => 'required|confirmed|min:5', 'email' => 'required|email'];
+        $messages = ['name.required' => '请填写用户名', 'email.unique' => '您的邮箱已被注册', 'password.required' => '请填写密码', 'password.confirmed' => '两次密码不匹配。'];
+        $validator = Validator::make($data, $rules, $messages);
+        if (!$validator->passes()) {
+            $card = new Card;
+            $card->name = $request->input('name');
+            $json = [
+                'message' => '信息不合法'
+            ];
+            $status = 403;
+        } else {
+            $card = Card::create($data);
+//    $card->name=$request->input('name');
+//    $card->password=$this->make($request->input('password'));
+//    $card->email=$request->input('email');
+            $card->api_token = str_random(60);
+            if ($card->save()) {
+                $status = 200;
+                $json = [
+                    'message' => "用户注册成功！",
+                    'api-token' => $card->api_token,
+                    'card_id' => '123'];
+            } else {
+                $status = 500;
+                $json = [
+                    'message' => "用户注册失败！"
+                ];
+            }
+
+        }
+        return response()->json($json, $status);
+    }
+
     public function register(Request $request)
     {
         $data = Request::all();
@@ -90,10 +125,10 @@ class CardController extends Controller
     }
 
 
-    public function post(Request $request){
-        $card = new Card();
-        $card->name = $request->input('name');
-        $card->save();
-        return $this->sendData('创建用户',[]);
-    }
+//    public function post(Request $request){
+//        $card = new Card();
+//        $card->name = $request->input('name');
+//        $card->save();
+//        return $this->sendData('创建用户',[]);
+//    }
 }
