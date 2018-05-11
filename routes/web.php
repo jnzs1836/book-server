@@ -18,28 +18,28 @@ $router->get('/', function () use ($router) {
 // $router->resource('book', 'BookController');
 $router->get('/book','BookController@index');
 
-$router->get('/application','ApplicationController@index');
-$router->get('/application/available','ApplicationController@available');
-$router->post('/application','ApplicationController@post');
+$router->get('/api/application','ApplicationController@index');
+$router->get('/api/application/available','ApplicationController@available');
+$router->post('/api/application','ApplicationController@post');
 
-$router->get('/book','BookController@index');
-$router->get('/book/available','BookController@available');
-$router->post('/book','BookController@post');
+$router->get('/api/book','BookController@index');
+$router->get('/api/book/available','BookController@available');
+$router->post('/api/book','BookController@post');
 
-$router->post('/card','CardController@post');
-$router->get('/card','CardController@index');
-$router->get('/card/{id}','CardController@get');
+$router->post('/api/card','CardController@post');
+$router->get('/api/card','CardController@index');
+$router->get('/api/card/{id}','CardController@get');
 
-$router->get('/record','RecordController@index');
-$router->post('/record','RecordController@post');
-$router->get('/record/{id}','RecordController@get');
-$router->post('/record/deal','RecordController@dealApplication');
-$router->post('/record/return','RecordController@returnBook');
+$router->get('/api/record','RecordController@index');
+$router->post('/api/record','RecordController@post');
+$router->get('/api/record/{id}','RecordController@get');
+$router->post('/api/record/deal','RecordController@dealApplication');
+$router->post('/api/record/return','RecordController@returnBook');
 
-$router->get('/admin','AdminController@index');
-$router->post('/admin','AdminController@post');
-$router->get('/admin/{id}','AdminController@get');
+$router->get('/api/admin','AdminController@index');
+$router->post('/api/admin','AdminController@post');
+$router->get('/api/admin/{id}','AdminController@get');
 
 
 
-$router->get('/hello','BookController@post');
+$router->get('/api/hello','BookController@post');
