@@ -14,7 +14,7 @@ class CardTableSeeder extends Seeder{
         DB::table('cards')->insert([
             'name' => str_random(10),
             'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
+            'password' => 'secret',
         ]);
     }
 }
