@@ -22,7 +22,7 @@ class BookController extends Controller{
     }
 
     public function get($id){
-        $book = Book::get($id)->first();
+        $book = Book::where('id',$id)->first();
         return json_encode($book);
     }
 
