@@ -21,6 +21,11 @@ class BookController extends Controller{
         return json_encode($books);
     }
 
+    public function get($id){
+        $book = Book::get($id)->first();
+        return json_encode($book);
+    }
+
     public function availableBooks(Request $request){
 //        $request->input('')
         $books = Book::orderby('name','decs')->get()->filter(function ($item) {
