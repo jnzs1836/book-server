@@ -73,7 +73,19 @@ class BookController extends Controller{
 
     }
 
-    public function patch(Request $request){
+    public function update($id){
+        $data = Request::all();
+        $act = Book::find($id);
+        $act->name = $data['name'];
+        $act->author = $data['author'];
+//        $act->admin_id = session('id');
+        $act->press = $data['press'];
+        $act->quantity = $data['quantity'];
+//        if ($data['filename'] != '') {
+//            $act->front_pic = $data['filename'];
+//        }
+        $act->save();
+        return response()->json(['message'=>'success'],200);
 
     }
 //    public function post(){

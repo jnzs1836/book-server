@@ -28,6 +28,7 @@ $router->get('/api/book','BookController@index');
 $router->get('/api/book/available','BookController@available');
 $router->post('/api/book','BookController@post');
 $router->get('/api/book/{id}','BookController@get');
+$router->post('/api/book/update/{id}','BookController@update');
 
 
 $router->post('/api/card','CardController@post');
