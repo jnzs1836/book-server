@@ -20,6 +20,7 @@ class BookTableSeeder extends Seeder{
                 'quantity' => 4,
                 'stock' => 4
             ]);
+            $i = $i + 1;
         }
     }
 }

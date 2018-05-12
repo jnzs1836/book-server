@@ -11,10 +11,14 @@ class CardTableSeeder extends Seeder{
      */
     public function run()
     {
-        DB::table('cards')->insert([
-            'name' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
-            'password' => 'secret',
-        ]);
+        $i = 0;
+        while($i < 100) {
+            DB::table('cards')->insert([
+                'name' => str_random(10),
+                'email' => str_random(10) . '@gmail.com',
+                'password' => 'secret',
+            ]);
+            $i = $i + 1;
+        }
     }
 }
