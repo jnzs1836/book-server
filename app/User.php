@@ -29,4 +29,47 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+
+    // A user has multiple books
+    public function books(){
+        return $this->hasMany('App\Book','owner_id');
+    }
+
+    public function buyingOrders(){
+        return $this->hasMany('App\Order','buyer_id');
+    }
+
+    public function sellingOrders(){
+        return $this->hasMany('App\Order','seller_id');
+    }
+    
+    public function issuedRewards(){
+        return $this->hasMany('App\Reward','issuer_id');
+    }
+
+    public function appliedRewards(){
+        return $this->hasMany('App\Reward','applier_id');
+    }
+
+    public function orders(){
+        return $this->hasMany('App\Order','owner');
+    }
+
+    public function bidOrder(){
+        return $this->morphOne('App\Order', 'orderable');
+    }
+
+    public function acceptOrder(){
+        return $this->morphOne('App\Order', 'orderable');
+    }
+
+    public function sentMessages(){
+        return $this->hasMany('App\Message', 'sender_id');
+    }
+
+    public function receivedMessages(){
+        return $this->hasMany('App\Message', 'receiver_id');
+    }
+
 }

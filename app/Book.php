@@ -7,29 +7,14 @@ use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model{
-    protected $fillable = ["id","category","name","author","year","price","stock","keep"];
+    protected $fillable = ["id","origin_price","sell_price","author","category","introduction", "pic","ISBN","introduction"];
 
     public function findByChar($keywords){
         return ;
     }
-    public function records(){
-        return $this->hasMany('App\Record','book_id');
+
+    public function owner(){
+        return $this->belongsTo('App\User', 'owner_id');
     }
 
-    public function applications(){
-        return $this->hasMany('App\Application');
-    }
-
-
-
-//    public function requestBorrow($card, $admin){
-//        $application = new Application;
-//
-//        $record = new Record;
-//        $record->admin()->associate($admin);
-//        $record->card()->associate($card);
-//        $record->admin()->associate()
-//        $this->records()->save($record);//wuguandeshidashabi
-//    }
-    
 }
